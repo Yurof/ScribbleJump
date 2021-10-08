@@ -12,14 +12,29 @@ public class MovingPLayer : MonoBehaviour
     private Rigidbody2D rb;
     public int jumpforce = 5;
     public float horizontalforce = 3;
-    
+    private bool isGrounded;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
+    void OnCollisionStay()
+    {
+        isGrounded = true;
+    }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+
+        if (other.gameObject.CompareTag("Plateformes"))
+        {
+            //transform.position = new Vector3(0, 2, 0);
+            rb.velocity = new Vector2(rb.velocity.x, jumpforce);
+
+        }
+
+    }
     // Update is called once per frame
     void Update()
     {
