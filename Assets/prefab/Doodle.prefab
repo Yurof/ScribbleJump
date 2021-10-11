@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 3151768983251773277}
   - component: {fileID: 3151768983251773264}
   - component: {fileID: 3151768983251773267}
-  - component: {fileID: 3151768983251773266}
   - component: {fileID: 3151768983251773265}
+  - component: {fileID: 3151768983251773266}
+  - component: {fileID: -8437827399691739472}
+  - component: {fileID: -5763117248325847243}
   m_Layer: 0
   m_Name: Doodle
   m_TagString: Player
@@ -73,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a03d0c6afb230024db5f426fa8f67c03, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -106,24 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3151768983251773266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3151768983251773276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 202cb650941fd7d41bf0eca4083c85fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpforce: 6
-  horizontalforce: 2
-  mainCamera: {fileID: 0}
-  score: {fileID: 0}
-  animator: {fileID: 0}
-  springmultiplicator: 2
 --- !u!61 &3151768983251773265
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150,3 +134,48 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6409329, y: 0.8574987}
   m_EdgeRadius: 0
+--- !u!114 &3151768983251773266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3151768983251773276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 202cb650941fd7d41bf0eca4083c85fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalforce: 2
+  mainCamera: {fileID: 0}
+  jumpforce: 6
+--- !u!114 &-8437827399691739472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3151768983251773276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e02259cedfbd5a4c93725c8737ebe41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  springmultiplicator: 2
+  jumpforce: 6
+--- !u!114 &-5763117248325847243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3151768983251773276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce05265f3aff25f46875fd771d166d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  animator: {fileID: 0}

@@ -49,6 +49,5 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    // Update is called once per frame
 
 }

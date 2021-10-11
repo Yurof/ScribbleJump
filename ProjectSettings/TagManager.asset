@@ -9,6 +9,7 @@ TagManager:
   - redPlateformes
   - brokenPlateformes
   - spring
+  - BlackHoles
   layers:
   - Default
   - TransparentFX

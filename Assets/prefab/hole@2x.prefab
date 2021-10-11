@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3861001684594537816}
   m_Layer: 0
   m_Name: hole@2x
-  m_TagString: Monsters
+  m_TagString: BlackHoles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
