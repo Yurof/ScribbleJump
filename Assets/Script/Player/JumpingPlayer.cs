@@ -12,7 +12,8 @@ public class JumpingPlayer : MonoBehaviour
     public float springmultiplicator = 2;
     public int jumpforce = 6;
     private Rigidbody2D rb;
-
+    public AudioSource springsound;
+    public AudioSource jumpgsound;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class JumpingPlayer : MonoBehaviour
         {
             if (other.relativeVelocity.y > 0)
             {
+                jumpgsound.Play();
                 animator.SetTrigger("jumpingt");
                 rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
                 //animator.SetBool("jumping", false);
@@ -37,15 +39,18 @@ public class JumpingPlayer : MonoBehaviour
             if (other.relativeVelocity.y > 0)
             {
                 animator.SetTrigger("jumpingt");
-                rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+                //rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
                 //Destroy(other.collider.gameObject);
             }
         }
+
+
 
         if (other.gameObject.CompareTag("spring"))
         {
             if (other.relativeVelocity.y > 0)
             {
+                springsound.Play();
                 animator.SetTrigger("jumpingt");
                 rb.AddForce(Vector2.up * jumpforce * springmultiplicator, ForceMode2D.Impulse);
             }

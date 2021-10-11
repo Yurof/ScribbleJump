@@ -7,7 +7,7 @@ public class WrappingRight : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player")
         {
-            other.gameObject.transform.position = new Vector3(-3f, other.gameObject.transform.position.y, 10);
+            other.gameObject.transform.position = new Vector3(-2.5f, other.gameObject.transform.position.y, 10);
         }
     }
 }

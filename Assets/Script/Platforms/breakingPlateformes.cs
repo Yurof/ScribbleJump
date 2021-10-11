@@ -5,6 +5,7 @@ using UnityEngine;
 public class breakingPlateformes : MonoBehaviour
 {
     public Animator animator;
+    public AudioSource crackingsound;
     void OnCollisionEnter2D(Collision2D other)
     {
         Vector2 direction = other.GetContact(0).normal;
@@ -12,6 +13,7 @@ public class breakingPlateformes : MonoBehaviour
         {
             if (other.relativeVelocity.y < 0)
             {
+                crackingsound.Play();
                 animator.SetTrigger("triggered");
             }
         }

@@ -64,7 +64,7 @@ public class PlateformGenerator : MonoBehaviour
             spawnpos.x = Random.Range(-2.2f, 2.2f);
             float randomg = Random.Range(0f, 1f);
 
-            if (randomg < 0.02)
+            if (randomg < 0.001)
             {
                 Instantiate(monsterPrefab1, spawnpos, Quaternion.identity);
             }

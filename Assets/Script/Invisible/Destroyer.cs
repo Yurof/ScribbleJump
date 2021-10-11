@@ -10,6 +10,7 @@ public class Destroyer : MonoBehaviour
     private bool cameramov;
     private int stopmov=0;
     private int i = 0;
+    public AudioSource fallingsound;
     void Start()
     {
         cameramov = false;
@@ -22,7 +23,9 @@ public class Destroyer : MonoBehaviour
             if (stopmov < 170) { 
                 mainCamera.transform.Translate(Vector3.down * Time.deltaTime * 20f);
                 stopmov += 1;
-            } 
+                
+            }
+            
         }
     }
 
@@ -32,6 +35,7 @@ public class Destroyer : MonoBehaviour
         Debug.Log(i);
         if (other.gameObject.CompareTag("Player"))
         {
+            fallingsound.Play();
             cameramov = true;
 
             other.transform.position=new Vector2(other.transform.position.x, transform.position.y - 0.1f);

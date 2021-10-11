@@ -12,7 +12,7 @@ public class MovingPLayer : MonoBehaviour
     private Rigidbody2D rb;
     public float horizontalforce = 2;
     public Camera mainCamera;
-    public int jumpforce = 6;
+    public float jumpforce = 6;
 
     private bool lookingright = true;
 
