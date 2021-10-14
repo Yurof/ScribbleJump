@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7625653117801861228}
   - component: {fileID: 7314098265741719130}
   - component: {fileID: -2805031616561682810}
+  - component: {fileID: 5085254843489944099}
   m_Layer: 0
   m_Name: greenplatform
   m_TagString: Plateformes
@@ -143,7 +144,19 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 163.4
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 0
+--- !u!114 &5085254843489944099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314098265741719110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9733bd34fd7c041b2b483618b92106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

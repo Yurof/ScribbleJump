@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("up"))
+        if (Input.GetKeyDown("up") || Input.GetMouseButtonDown(0))
         {
             shootingsound.Play();
             animator.SetBool("shooting",true);

@@ -6,18 +6,23 @@ public class breakingPlateformes : MonoBehaviour
 {
     public Animator animator;
     public AudioSource crackingsound;
-    void OnCollisionEnter2D(Collision2D other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Vector2 direction = other.GetContact(0).normal;
         if (other.gameObject.CompareTag("Player"))
         {
-            if (other.relativeVelocity.y < 0)
+            Vector2 direction = transform.position - other.gameObject.transform.position;
+
+            if (direction.y < 0)
             {
                 crackingsound.Play();
                 animator.SetTrigger("triggered");
             }
-        }
-
+        } 
     }
-
+    void OnBecameInvisible()
+    {
+        Destroy(transform.parent.gameObject);
+        Destroy(gameObject);
+    }
 }
