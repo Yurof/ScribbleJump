@@ -1220,6 +1220,10 @@ PrefabInstance:
       value: NoahMonster
       objectReference: {fileID: 0}
     - target: {fileID: 8282572818956677792, guid: 1b5b3a7b54b8505418fae7ddab130022, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8282572818956677792, guid: 1b5b3a7b54b8505418fae7ddab130022, type: 3}
       propertyPath: m_TagString
       value: Monsters
       objectReference: {fileID: 0}
@@ -1267,7 +1271,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7933909497176168548, guid: 1b5b3a7b54b8505418fae7ddab130022, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1b5b3a7b54b8505418fae7ddab130022, type: 3}
 --- !u!1 &946497821
 GameObject:
@@ -2484,6 +2489,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: hole@2x
       objectReference: {fileID: 0}
+    - target: {fileID: 6273987250531553541, guid: 8e7c8638360c4a14188bf0146f57f28e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6273987250531553542, guid: 8e7c8638360c4a14188bf0146f57f28e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2937,6 +2946,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1139631491}
     - target: {fileID: 3151768983251773264, guid: f1556c01e934b7b4b886001c4c3cba77, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3151768983251773264, guid: f1556c01e934b7b4b886001c4c3cba77, type: 3}
       propertyPath: m_SortingOrder
       value: 5
       objectReference: {fileID: 0}
@@ -2964,6 +2977,10 @@ PrefabInstance:
       propertyPath: brownplateformAnimation
       value: 
       objectReference: {fileID: 6466975037899170160, guid: b106cc737ccab574cad4bf4b13875c25, type: 3}
+    - target: {fileID: 3151768983251773267, guid: f1556c01e934b7b4b886001c4c3cba77, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3151768983251773276, guid: f1556c01e934b7b4b886001c4c3cba77, type: 3}
       propertyPath: m_Name
       value: Doodle

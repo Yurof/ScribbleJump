@@ -102,8 +102,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.41400778, y: 0.14490533}
-  - {x: 0.44692647, y: 0.13962755}
+  - {x: -0.5218769, y: 0.15527737}
+  - {x: -0.53432333, y: 0.15735179}
+  - {x: 0.46974492, y: 0.14585078}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -144,7 +145,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 163.4
+  m_SurfaceArc: 169.48
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0

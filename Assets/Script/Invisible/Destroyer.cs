@@ -16,6 +16,7 @@ public class Destroyer : MonoBehaviour
     private int stopmov=0;
     public AudioSource fallingsound;
     private BoxCollider2D bc;
+    private IEnumerator coroutine;
     void Start()
     {
         bc = GetComponent<BoxCollider2D>();
@@ -23,12 +24,12 @@ public class Destroyer : MonoBehaviour
 
     void Update()
     {
-        if (stopmov > 650)
+/*        if (stopmov > 400)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }
+        }*/
 
-        if (stopmov < 150+(transform.position.y-mainCamera.transform.position.y) && fallingDownBool)
+        if (stopmov < 100+(transform.position.y-mainCamera.transform.position.y) && fallingDownBool)
         {
             mainCamera.transform.Translate(Vector3.down * Time.deltaTime * 20f);
 
@@ -52,6 +53,8 @@ public class Destroyer : MonoBehaviour
             fallingsound.Play();
             bc.enabled=false;
             fallingDownBool = true;
+            coroutine = FallingDown(2f);
+            StartCoroutine(coroutine);
         }
 /*        if (!other.gameObject.CompareTag("Player"))
         {
@@ -73,5 +76,10 @@ public class Destroyer : MonoBehaviour
         {
             Destroy(other.transform.parent.gameObject);
         }
+    }
+    IEnumerator FallingDown(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

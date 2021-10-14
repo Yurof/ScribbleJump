@@ -13,12 +13,14 @@ public class MovingPLayer : MonoBehaviour
     public float horizontalforce = 2;
     public Camera mainCamera;
     public float jumpforce = 6;
+    private SpriteRenderer mysprite;
 
     private bool lookingright = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        mysprite = GetComponent<SpriteRenderer>();
     }
 
     void Update(){
@@ -28,20 +30,36 @@ public class MovingPLayer : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Q) || Input.GetKeyDown("left") )
         {
-            if (lookingright)Flip();
+            lookingright = false;
+            Flip();
             rb.velocity = new Vector2(-horizontalforce, rb.velocity.y);
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKeyDown("right"))
         {
-            if (!lookingright)Flip();
+            lookingright = true;
+            Flip();
             rb.velocity = new Vector2(horizontalforce, rb.velocity.y);
         }
     }
 
     private void Flip()
     {
-        transform.Rotate(0f, 180f, 0);
-        lookingright = !lookingright;
+        Debug.Log("FLIP");
+        if (!lookingright)
+        {
+            mysprite.flipX = true;
+        }
+        else
+        {
+            mysprite.flipX = false;
+        }
+        
+        //transform.Rotate(0f, 180f, 0);
+
+        /*Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+        */
     }
 
 }
