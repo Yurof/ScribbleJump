@@ -1,26 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class breakingPlateformes : MonoBehaviour
 {
     public Animator animator;
-    public AudioSource crackingsound;
+    public AudioSource crackingSound;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
+        {            
             Vector2 direction = transform.position - other.gameObject.transform.position;
+            Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
 
-            if (direction.y < 0)
+            if (rb.velocity.y < 0)
             {
-                crackingsound.Play();
-                animator.SetTrigger("triggered");
+                crackingSound.Play();
+                animator.SetTrigger("breakingDownTrigger");
             }
-        } 
+        }
     }
-    void OnBecameInvisible()
+
+    private void OnBecameInvisible()
     {
         Destroy(transform.parent.gameObject);
         Destroy(gameObject);

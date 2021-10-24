@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: triggered
+    m_ConditionEvent: breakingDownTrigger
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1988443028119717997}
@@ -34,7 +34,7 @@ AnimatorController:
   m_Name: brokenplateformes
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: triggered
+  - m_Name: breakingDownTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -103,18 +103,18 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7426932240884350504}
-    m_Position: {x: 70, y: 70, z: 0}
+    m_Position: {x: 70, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1988443028119717997}
-    m_Position: {x: 90, y: 230, z: 0}
+    m_Position: {x: 70, y: 130, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 340, y: 10, z: 0}
+  m_AnyStatePosition: {x: 370, y: -100, z: 0}
   m_EntryPosition: {x: 90, y: -150, z: 0}
-  m_ExitPosition: {x: 360, y: 130, z: 0}
+  m_ExitPosition: {x: 370, y: 100, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 7426932240884350504}
 --- !u!1102 &7426932240884350504

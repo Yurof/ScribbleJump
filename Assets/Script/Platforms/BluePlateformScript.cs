@@ -1,35 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BluePlateformScript : MonoBehaviour
 {
-    private bool booright=true;
-    public float bluespeed=2;
-    // Start is called before the first frame update
-    void Start()
+    public float blueSpeed = 2f;
+    public float wallLimit = 2.2f;
+    private bool direction = true;
+    
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (transform.position.x >= 2.2f)
+        if (transform.position.x >= wallLimit)
         {
-            booright = false;
+            direction = false;
         }
-        if (transform.position.x <= -2.2f)
+        if (transform.position.x <= -wallLimit)
         {
-            booright = true;
+            direction = true;
         }
 
-        if (booright) {
-            transform.Translate((Vector2.right)*Time.deltaTime* bluespeed);
-        }
-        if (!booright)
+        if (direction)
         {
-            transform.Translate((Vector2.left) * Time.deltaTime* bluespeed);
+            transform.Translate((Vector2.right) * Time.deltaTime * blueSpeed);
+        }
+        else
+        {
+            transform.Translate((Vector2.left) * Time.deltaTime * blueSpeed);
         }
     }
 }

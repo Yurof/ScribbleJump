@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &3151768983251773265
 BoxCollider2D:
@@ -146,9 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202cb650941fd7d41bf0eca4083c85fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalforce: 2
-  mainCamera: {fileID: 0}
-  jumpforce: 6
+  pauseMenu: {fileID: 0}
+  jumpingPlayer: {fileID: 0}
+  weapon: {fileID: 0}
 --- !u!114 &-8437827399691739472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,8 +162,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  springmultiplicator: 2
-  jumpforce: 6
+  cameraMouving: {fileID: 0}
+  springSound: {fileID: 0}
+  jumpSound: {fileID: 0}
+  fallingSound: {fileID: 0}
+  blackholeSound: {fileID: 0}
+  springMultiplicator: 2
+  horizontalForce: 2
+  jumpForce: 6
+  blackholeDelay: 1.5
 --- !u!114 &-5763117248325847243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,3 +186,4 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
   animator: {fileID: 0}
+  shootingsound: {fileID: 0}

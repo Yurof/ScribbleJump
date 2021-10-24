@@ -23,6 +23,7 @@ public class PlateformGenerator : MonoBehaviour
     {
         playerpastos = player.transform.position.y;
         Vector3 spawnpos = new Vector3();
+        spawnpos.y += 1;
         spawnpos = Generate(spawnpos);
         highest = spawnpos.y;
 

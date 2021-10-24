@@ -8,22 +8,12 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     public Animator animator;
     public AudioSource shootingsound;
-    // Update is called once per frame
-    void Update()
+
+    public void Shoot()
     {
-        if (Input.GetKeyDown("up") || Input.GetMouseButtonDown(0))
-        {
-            shootingsound.Play();
-            animator.SetBool("shooting",true);
-            animator.SetTrigger("shootingt");
-            Shoot();
-            
-        }
-        
-    }
-    void Shoot()
-    {
+        shootingsound.Play();
+        animator.SetBool("shooting", true);
+        animator.SetTrigger("shootingt");
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        //animator.SetBool("shooting", false);
     }
 }

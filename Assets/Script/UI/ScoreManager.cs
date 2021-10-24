@@ -1,31 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
 using System;
-using UnityEngine.UI;
+using TMPro;
+using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI score;
+    public TextMeshProUGUI scoreGameOver;
+    public float ScoreMultiplier = 10;
+
     //public TextMeshProUGUI HallOfFame;
     private float scorevalue;
+
     public GameObject player;
     private float HallOfFamevalue;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         SetscoreText();
         HallOfFamevalue = PlayerPrefs.GetFloat("HighScore");
     }
-    void SetscoreText()
+
+    private void SetscoreText()
     {
-        scorevalue = (float)Math.Max(scorevalue, Math.Round((player.transform.position.y - 1.4f) * 10));
+        scorevalue = (float)Math.Max(scorevalue, Math.Round((player.transform.position.y - 1.4f) * ScoreMultiplier));
         score.text = scorevalue.ToString();
+        scoreGameOver.text = "your score: " + scorevalue.ToString() + "\n" + "your best score: " + HallOfFamevalue;
     }
 
-    void SetHallOfFame()
+    private void SetHallOfFame()
     {
         if (scorevalue > HallOfFamevalue)
         {
@@ -36,9 +39,8 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetFloat("Last", scorevalue);
     }
 
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         SetscoreText();
         SetHallOfFame();
