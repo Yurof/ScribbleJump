@@ -12,7 +12,7 @@ public class ControlsPLayer : MonoBehaviour
     private void Awake()
     {
         controls = new PlayerActionControls();
-        controls.Player.Jump.performed += ctx => jumpingPlayer.Jump();
+        controls.Player.Jump.performed += ctx => Jumping();
         controls.Player.Move.performed += ctx => Move(ctx);
         controls.Player.Pause.performed += ctx => pauseMenu.ResumeOrPause();
         controls.Player.Shoot.performed += ctx => weapon.Shoot();
@@ -26,6 +26,18 @@ public class ControlsPLayer : MonoBehaviour
     private void OnDisable()
     {
         controls.Disable();
+    }
+    private void Jumping()
+    {
+        if (PlayerPrefs.HasKey("Cheat"))
+        {
+            if (PlayerPrefs.GetInt("Cheat") == 1)
+            {
+                jumpingPlayer.Jump();
+            }
+
+        }
+        
     }
 
     private void Move(InputAction.CallbackContext ctx)

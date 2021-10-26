@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     //public Animator transition;
-    public float transitiontime = 1f;
+    public float transitiontime = 0f;
+    public Animator animator;
 
     public TextMeshProUGUI HallOfFame;
     public TextMeshProUGUI Lastscore;
@@ -34,6 +35,11 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    public void OptionGame()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 2));
+    }
+
     public void QuitGame()
     {
         Application.Quit();
@@ -42,6 +48,7 @@ public class MainMenu : MonoBehaviour
     private IEnumerator LoadLevel(int levelIndex)
     {
         //transition.SetTrigger("start");
+        animator.SetTrigger("start");
 
         yield return new WaitForSeconds(transitiontime);
         SceneManager.LoadScene(levelIndex);

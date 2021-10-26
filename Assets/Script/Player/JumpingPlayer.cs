@@ -119,7 +119,6 @@ public class JumpingPlayer : MonoBehaviour
         if (direction != 0) {
             if (mySprite.flipX != (direction < 0))
             {
-                Debug.Log("flip jetpack");
                 jetpack.gameObject.transform.position = new Vector2(jetpack.gameObject.transform.position.x + (direction * -0.67f), jetpack.gameObject.transform.position.y);
             }
             mySprite.flipX = (direction < 0);
