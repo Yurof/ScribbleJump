@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlateformGenerator : MonoBehaviour
-{   
+{
     public GameObject plateformPrefabgreen;
     public GameObject plateformPrefabbrown;
     public GameObject plateformPrefabblue;
@@ -14,43 +12,38 @@ public class PlateformGenerator : MonoBehaviour
     private float playerpastos;
     private float randomGreen;
     private float highest;
-    private float var1=5.5f;
-    public float springpercent =0.05f;
+    private float var1 = 5.5f;
+    public float springpercent = 0.05f;
     public float mosnterpercent = 0.001f;
+
     //private Vector2 spawnpos;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         playerpastos = player.transform.position.y;
         Vector3 spawnpos = new Vector3();
         spawnpos.y += 1;
         spawnpos = Generate(spawnpos);
         highest = spawnpos.y;
-
-
     }
 
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
-        
         Vector3 currentpos = player.transform.position;
         Vector3 spawnpos = new Vector3();
-        if (currentpos.y- playerpastos> highest- var1)
+        if (currentpos.y - playerpastos > highest - var1)
         {
             var1 = 4f;
             playerpastos = currentpos.y;
             spawnpos = player.transform.position;
             spawnpos.y += 5;
-            spawnpos=Generate(spawnpos);
+            spawnpos = Generate(spawnpos);
             highest = spawnpos.y - player.transform.position.y;
         }
-
     }
 
-    Vector3 Generate(Vector3 spawnpos)
+    private Vector3 Generate(Vector3 spawnpos)
     {
         for (int i = 0; i < 15; i++)
         {
@@ -80,27 +73,22 @@ public class PlateformGenerator : MonoBehaviour
                     Debug.Log(mosnterpercent);
                     Debug.Log("create monster");
                     Instantiate(monsterPrefab2, new Vector3(spawnpos.x, spawnpos.y + 0.65f, spawnpos.z), Quaternion.identity);
-
-                    
                 }
-                else 
+                else
                 {
                     if (mosnterpercent + springpercent > randomGreen) Instantiate(spring, new Vector3(spawnpos.x, spawnpos.y + 0.2f, spawnpos.z), Quaternion.identity);
                 }
-
             }
         }
         return spawnpos;
     }
 
-    void OnBecameInvisible()
+    private void OnBecameInvisible()
     {
         Destroy(plateformPrefabgreen);
         Destroy(plateformPrefabblue);
         Destroy(plateformPrefabbrown);
         Destroy(monsterPrefab1);
         Destroy(monsterPrefab2);
-
     }
-
 }

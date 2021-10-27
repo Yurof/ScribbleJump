@@ -8,12 +8,13 @@ public class JumpOnHead : MonoBehaviour
 
     private GameObject Enemy;
     private Rigidbody2D rb;
-    private bool deathBool= false;
+    private bool deathBool = false;
 
     private void Start()
     {
         Enemy = gameObject.transform.parent.gameObject;
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         jumpingSound.Play();
@@ -28,8 +29,7 @@ public class JumpOnHead : MonoBehaviour
     {
         if (deathBool)
         {
-            Enemy.transform.Translate(Vector2.down * Time.deltaTime* fallingDeathSpeed);
+            Enemy.transform.Translate(Vector2.down * Time.deltaTime * fallingDeathSpeed);
         }
-        
     }
 }

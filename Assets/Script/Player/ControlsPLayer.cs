@@ -27,6 +27,7 @@ public class ControlsPLayer : MonoBehaviour
     {
         controls.Disable();
     }
+
     private void Jumping()
     {
         if (PlayerPrefs.HasKey("Cheat"))
@@ -35,9 +36,7 @@ public class ControlsPLayer : MonoBehaviour
             {
                 jumpingPlayer.Jump();
             }
-
         }
-        
     }
 
     private void Move(InputAction.CallbackContext ctx)

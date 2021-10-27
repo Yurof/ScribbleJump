@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     //public Animator transition;
     public float transitiontime = 0f;
+
     public Animator animator;
 
     public TextMeshProUGUI HallOfFame;

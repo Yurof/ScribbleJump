@@ -11,5 +11,4 @@ public class Wrapping : MonoBehaviour
             other.gameObject.transform.position = new Vector2(xCoordinate, other.gameObject.transform.position.y);
         }
     }
-
 }

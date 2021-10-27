@@ -8,6 +8,8 @@ public class JumpingPlayer : MonoBehaviour
     public CameraMoving cameraMouving;
     public GameObject jetpack;
     public AudioSource springSound;
+    public AudioSource hatSound;
+    public AudioSource jetpackSound;
     public AudioSource jumpSound;
     public AudioSource fallingSound;
     public AudioSource blackholeSound;
@@ -23,7 +25,7 @@ public class JumpingPlayer : MonoBehaviour
 
     private Rigidbody2D rb;
     private GameObject BlackHole;
-  
+
     private CapsuleCollider2D myCollider;
     private bool fallingBlackHole = false;
     private bool hatBool = false;
@@ -37,7 +39,7 @@ public class JumpingPlayer : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
-        jetpackSprite=jetpack.GetComponent<SpriteRenderer>();
+        jetpackSprite = jetpack.GetComponent<SpriteRenderer>();
         myCollider = GetComponent<CapsuleCollider2D>();
     }
 
@@ -50,19 +52,37 @@ public class JumpingPlayer : MonoBehaviour
             myCollider.enabled = false;
             cameraMouving.FallingDown();
             rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-        }
+            rb.velocity = Vector2.zero;
+            jetpackSound.Stop();
+            Debug.Log("zero out");
 
+            //rb.angularVelocity = Vector3.zero;
+            foreach (Transform child in transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+        }
         else if (other.gameObject.CompareTag("BlackHoles"))
         {
             animator.SetTrigger("blackholeTrigger");
             BlackHole = other.transform.gameObject;
             fallingBlackHole = true;
             blackholeSound.Play();
+            rb.velocity = Vector2.zero;
+            jetpackSound.Stop();
+
+            hatSound.Stop();
+            animator.SetBool("hatBool", false);
+            hatBool = false;
+
+            foreach (Transform child in transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             coroutine = BLackHoleDeath(blackholeDelay);
             StartCoroutine(coroutine);
         }
-
         else if (other.relativeVelocity.y > 0)
         {
             if (other.gameObject.CompareTag("Plateformes"))
@@ -71,7 +91,6 @@ public class JumpingPlayer : MonoBehaviour
                 animator.SetTrigger("jumpingTrigger");
                 Jump();
             }
-
             else if (other.gameObject.CompareTag("spring"))
             {
                 springSound.Play();
@@ -85,6 +104,7 @@ public class JumpingPlayer : MonoBehaviour
                 //rb.AddForce(Vector2.up * jumpForce * hatMultiplicator, ForceMode2D.Impulse);
                 hatBool = true;
                 //myCollider.enabled = false;
+                hatSound.Play();
                 Destroy(other.gameObject);
                 coroutine = Hat(hatDelay);
                 StartCoroutine(coroutine);
@@ -92,11 +112,12 @@ public class JumpingPlayer : MonoBehaviour
             else if (other.gameObject.CompareTag("jetpack"))
             {
                 animator.SetTrigger("jetpackTrigger");
-                Debug.Log("jetpack");
                 animator.SetBool("jetpackBool", true);
                 //rb.AddForce(Vector2.up * jumpForce * hatMultiplicator, ForceMode2D.Impulse);
                 jetpackBool = true;
                 //myCollider.enabled = false;
+                jetpackSound.time = 0.1f;
+                jetpackSound.Play();
                 Destroy(other.gameObject);
                 coroutine = Jetpack(jetpackDelay);
                 StartCoroutine(coroutine);
@@ -114,23 +135,20 @@ public class JumpingPlayer : MonoBehaviour
     public void Moving(float directionInput)
     {
         direction = directionInput;
-        Debug.Log(direction);
-        Debug.Log(directionInput);
-        if (direction != 0) {
+        if (direction != 0)
+        {
             if (mySprite.flipX != (direction < 0))
             {
                 jetpack.gameObject.transform.position = new Vector2(jetpack.gameObject.transform.position.x + (direction * -0.67f), jetpack.gameObject.transform.position.y);
             }
             mySprite.flipX = (direction < 0);
             jetpackSprite.flipX = (direction > 0);
-            
         }
     }
 
     private void Update()
     {
         rb.velocity = new Vector2(direction * horizontalForce, rb.velocity.y);
-
 
         if (fallingBlackHole)
         {
@@ -147,11 +165,11 @@ public class JumpingPlayer : MonoBehaviour
         }
         if (jetpackBool)
         {
+            Debug.Log("UP");
             rb.velocity = new Vector2(rb.velocity.x, jetpackSpeed);
         }
-
+        Debug.Log(rb.velocity);
     }
-
 
     private IEnumerator BLackHoleDeath(float _delay)
     {
@@ -168,16 +186,16 @@ public class JumpingPlayer : MonoBehaviour
         animator.SetBool("hatBool", false);
         //myCollider.enabled = false;
         hatBool = false;
+        hatSound.Stop();
     }
+
     private IEnumerator Jetpack(float _delay)
     {
-        Debug.Log("start");
         yield return new WaitForSeconds(_delay);
-        Debug.Log("finish");
         //animator.SetTrigger("hatTrigger");
         animator.SetBool("jetpackBool", false);
         //myCollider.enabled = false;
         jetpackBool = false;
+        jetpackSound.Stop();
     }
-
 }

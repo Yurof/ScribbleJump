@@ -8,7 +8,7 @@ public class breakingPlateformes : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {            
+        {
             Vector2 direction = transform.position - other.gameObject.transform.position;
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
 

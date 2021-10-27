@@ -1,9 +1,27 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class OptionMenu : MonoBehaviour
 {
+    public Toggle toggle;
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("Cheat")) { 
+            if (PlayerPrefs.GetInt("Cheat") == 1)
+        {
+            toggle.isOn = true;
+        }
+        else
+        {
+            toggle.isOn = false;
+        }
+    }
+    }
+
     public void Menu()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 2));
@@ -20,9 +38,10 @@ public class OptionMenu : MonoBehaviour
     public void CheatToggle()
     {
         Debug.Log(PlayerPrefs.GetInt("Cheat"));
-        if (true)
+        Debug.Log(toggle.isOn);
+        if (PlayerPrefs.HasKey("Cheat"))
         {
-            if (PlayerPrefs.GetInt("Cheat") == 0)
+            if (toggle.isOn==true)
             {
                 PlayerPrefs.SetInt("Cheat", 1);
             }

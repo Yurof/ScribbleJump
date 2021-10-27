@@ -6,7 +6,6 @@ public class PauseMenu : MonoBehaviour
     private bool GameIsPaused = false;
     public GameObject PauseMenuUI;
 
-
     public void ResumeOrPause()
     {
         if (GameIsPaused)
@@ -22,6 +21,7 @@ public class PauseMenu : MonoBehaviour
             GameIsPaused = true;
         }
     }
+
     public void MainMenu()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1);
