@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,9 +13,12 @@ public class MainMenu : MonoBehaviour
 
     public TextMeshProUGUI HallOfFame;
     public TextMeshProUGUI Lastscore;
+    public TextMeshProUGUI tips;
     private float highscore;
     private float lastscore;
     public static ScoreManager instance;
+    private List<string> mylist = new List<string>(new string[] { "tips: You can pause the game with the pause button or the escape key", "tips: Enemies can have different number of life ", "tips: You can activate a cheat in the option menu" });
+
 
     private void Awake()
     {
@@ -29,6 +33,10 @@ public class MainMenu : MonoBehaviour
 
         Lastscore.text = "Last score: " + lastscore.ToString();
         HallOfFame.text = "Best score: " + highscore.ToString();
+        
+        tips.text = mylist[Random.Range(0,mylist.Count)];
+
+
     }
 
     public void PlayGame()
@@ -54,4 +62,5 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSeconds(transitiontime);
         SceneManager.LoadScene(levelIndex);
     }
+
 }

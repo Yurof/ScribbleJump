@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc45826a9f26a847850db9196d7c432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpingSound: {fileID: 0}
+  jumpingSound: {fileID: 131350640845096822}
   jumpForce: 6
   fallingDeathSpeed: 5
 --- !u!82 &131350640845096822
@@ -105,8 +105,8 @@ AudioSource:
   m_GameObject: {fileID: 8168822133359748578}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 48c4dbbd0af8ad048b930de53554edc1, type: 3}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: b6f1eac005b727b42b653fec1fa93869, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 9604b9d0dc37e31458a34217e4dd73bb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 8282572818956677794}
   - component: {fileID: 8282572818956677793}
   - component: {fileID: 1741433636343272012}
+  - component: {fileID: 714043384295333539}
   m_Layer: 0
   m_Name: NoahMonster
   m_TagString: Monsters
@@ -287,7 +288,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8282572818956677792}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -339,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  animator: {fileID: 714043384295333539}
 --- !u!114 &1741433636343272012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,3 +353,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9733bd34fd7c041b2b483618b92106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &714043384295333539
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282572818956677792}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 131b3e738325907408076668bea96a1b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
