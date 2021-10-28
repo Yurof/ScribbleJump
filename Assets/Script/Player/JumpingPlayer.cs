@@ -41,6 +41,7 @@ public class JumpingPlayer : MonoBehaviour
         mySprite = GetComponent<SpriteRenderer>();
         jetpackSprite = jetpack.GetComponent<SpriteRenderer>();
         myCollider = GetComponent<CapsuleCollider2D>();
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)

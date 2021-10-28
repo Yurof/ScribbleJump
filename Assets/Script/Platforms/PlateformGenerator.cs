@@ -2,19 +2,33 @@ using UnityEngine;
 
 public class PlateformGenerator : MonoBehaviour
 {
-    public GameObject plateformPrefabgreen;
-    public GameObject plateformPrefabbrown;
-    public GameObject plateformPrefabblue;
+    public GameObject greenPlateform;
+    public GameObject brownPlateform;
+    public GameObject bluePlateform;
+
     public GameObject spring;
-    public GameObject monsterPrefab1;
-    public GameObject monsterPrefab2;
+    public GameObject hat;
+    public GameObject jetpack;
+
+    public GameObject blackHole;
+    public GameObject noahMonster;
+    public GameObject rachelMonster;
+
     public GameObject player;
+    public float bluePlateformPercent = 0.1f;
+
+    public float jetpackPercent = 0f;
+    public float hatPercent = 0f;
+    public float springPercent = 0.05f;
+
+    public float blackHolePercent = 0f;
+    public float noahPercent = 0.001f;
+    public float RachelPercent = 0.5f;
+
     private float playerpastos;
     private float randomGreen;
     private float highest;
     private float var1 = 5.5f;
-    public float springpercent = 0.05f;
-    public float mosnterpercent = 0.001f;
 
     //private Vector2 spawnpos;
     // Start is called before the first frame update
@@ -23,7 +37,7 @@ public class PlateformGenerator : MonoBehaviour
         playerpastos = player.transform.position.y;
         Vector3 spawnpos = new Vector3();
         spawnpos.y += 1;
-        spawnpos = Generate(spawnpos);
+        spawnpos = Generate2(spawnpos);
         highest = spawnpos.y;
     }
 
@@ -38,7 +52,7 @@ public class PlateformGenerator : MonoBehaviour
             playerpastos = currentpos.y;
             spawnpos = player.transform.position;
             spawnpos.y += 5;
-            spawnpos = Generate(spawnpos);
+            spawnpos = Generate2(spawnpos);
             highest = spawnpos.y - player.transform.position.y;
         }
     }
@@ -53,42 +67,126 @@ public class PlateformGenerator : MonoBehaviour
 
             if (randomg < 0.001 && spawnpos.y > 10f)
             {
-                Instantiate(monsterPrefab1, spawnpos, Quaternion.identity);
+                Instantiate(blackHole, spawnpos, Quaternion.identity);
             }
             else if (0.02 <= randomg && randomg < 0.08)
             {
-                Instantiate(plateformPrefabblue, spawnpos, Quaternion.identity);
+                Instantiate(bluePlateform, spawnpos, Quaternion.identity);
             }
             else if (0.08 <= randomg && randomg < 0.20)
             {
-                Instantiate(plateformPrefabbrown, spawnpos, Quaternion.identity);
+                Instantiate(brownPlateform, spawnpos, Quaternion.identity);
             }
             else
             {
                 randomGreen = Random.Range(0.0f, 1.0f);
-                Instantiate(plateformPrefabgreen, spawnpos, Quaternion.identity);
-                if (mosnterpercent > randomGreen)
+                Instantiate(greenPlateform, spawnpos, Quaternion.identity);
+                if (springPercent > randomGreen)
                 {
                     Debug.Log(randomGreen);
-                    Debug.Log(mosnterpercent);
+                    Debug.Log(springPercent);
                     Debug.Log("create monster");
-                    Instantiate(monsterPrefab2, new Vector3(spawnpos.x, spawnpos.y + 0.65f, spawnpos.z), Quaternion.identity);
+                    Instantiate(noahMonster, new Vector3(spawnpos.x, spawnpos.y + 0.65f, spawnpos.z), Quaternion.identity);
                 }
                 else
                 {
-                    if (mosnterpercent + springpercent > randomGreen) Instantiate(spring, new Vector3(spawnpos.x, spawnpos.y + 0.2f, spawnpos.z), Quaternion.identity);
+                    if (springPercent + springPercent > randomGreen) Instantiate(spring, new Vector3(spawnpos.x, spawnpos.y + 0.2f, spawnpos.z), Quaternion.identity);
                 }
             }
         }
         return spawnpos;
     }
 
-    private void OnBecameInvisible()
+    private Vector3 Generate2(Vector3 spawnpos)
     {
-        Destroy(plateformPrefabgreen);
-        Destroy(plateformPrefabblue);
-        Destroy(plateformPrefabbrown);
-        Destroy(monsterPrefab1);
-        Destroy(monsterPrefab2);
+        Vector3 spawnpos2 = spawnpos;
+        for (int i = 0; i < 20; i++)
+        {
+            spawnpos.y += Random.Range(0.3f, 0.5f);
+            spawnpos.x = Random.Range(-2.2f, 2.2f);
+
+            float randomPlateformType = Random.Range(0.0f, 1.0f);
+            float randomMonsterOrObject = Random.Range(0.0f, 1.0f);
+            //float randomMonsterSpawn = Random.Range(0.0f, 1.0f);
+
+            if (randomPlateformType < bluePlateformPercent)
+            {
+                Instantiate(bluePlateform, spawnpos, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(greenPlateform, spawnpos, Quaternion.identity);
+                spawnpos.y += 0.5f;
+
+                //Debug.Log(randomMonsterOrObject);
+                if (randomMonsterOrObject < hatPercent)
+                {
+                    Debug.Log("hat");
+                    spawnpos.y -= 0.2f;
+                    Instantiate(hat, spawnpos, Quaternion.identity);
+                    spawnpos.y -= 0.3f;
+                }
+                else if (randomMonsterOrObject < hatPercent + jetpackPercent)
+                {
+                    Debug.Log("jetpack");
+                    Instantiate(jetpack, spawnpos, Quaternion.identity);
+                    spawnpos.y -= 0.5f;
+                }
+                else if (randomMonsterOrObject < hatPercent + jetpackPercent + springPercent)
+                {
+                    Debug.Log("spring");
+                    spawnpos.y -= 0.4f;
+                    Instantiate(spring, spawnpos, Quaternion.identity);
+                    spawnpos.y -= 0.1f;
+                }
+                else if (randomMonsterOrObject < hatPercent + jetpackPercent + springPercent + noahPercent)
+                {
+                    Debug.Log("noahMonster");
+                    Instantiate(noahMonster, spawnpos, Quaternion.identity);
+                    spawnpos.y -= 0.5f;
+                }
+                else if (randomMonsterOrObject < hatPercent + jetpackPercent + springPercent + noahPercent + RachelPercent)
+                {
+                    Debug.Log("rachelMonster");
+                    spawnpos.y += 0.3f;
+                    Instantiate(rachelMonster, spawnpos, Quaternion.identity);
+                    spawnpos.y -= 0.7f;
+                }
+                else if (randomMonsterOrObject > hatPercent + jetpackPercent + springPercent + noahPercent + RachelPercent)
+                {
+                    Debug.Log("plop");
+                }
+            }
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            spawnpos2.y += Random.Range(1f, 3f);
+            spawnpos2.x = Random.Range(-2.2f, 2.2f);
+
+            float randomPlateformType = Random.Range(0.0f, 1.0f);
+            float randomMonsterOrObject = Random.Range(0.0f, 1.0f);
+            //float randomMonsterSpawn = Random.Range(0.0f, 1.0f);
+
+            if (randomPlateformType < blackHolePercent)
+            {
+                Instantiate(blackHole, spawnpos2, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(brownPlateform, spawnpos2, Quaternion.identity);
+            }
+        }
+
+        return spawnpos;
     }
+
+/*    private void OnBecameInvisible()
+    {
+        Destroy(greenPlateform);
+        Destroy(bluePlateform);
+        Destroy(brownPlateform);
+        Destroy(blackHole);
+        Destroy(noahMonster);
+    }*/
 }

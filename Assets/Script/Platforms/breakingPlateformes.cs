@@ -18,6 +18,11 @@ public class breakingPlateformes : MonoBehaviour
                 animator.SetTrigger("breakingDownTrigger");
             }
         }
+        else if (other.gameObject.CompareTag("Plateformes")){
+            Debug.Log("HAAA");
+            Destroy(transform.parent.gameObject);
+            Destroy(gameObject);
+        }
     }
 
     private void OnBecameInvisible()

@@ -11,9 +11,9 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
-        shootingsound.Play();
         animator.SetBool("shooting", true);
         animator.SetTrigger("shootingt");
+        shootingsound.Play();
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 }
