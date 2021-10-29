@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Wrapping : MonoBehaviour
 {
-    public float xCoordinate = 2.5f;
+    public float xCoordinate = 2.6f;
 
     private void OnTriggerStay2D(Collider2D other)
     {

@@ -9,6 +9,7 @@ using UnityEngine.InputSystem.Utilities;
 public class @PlayerActionControls : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
+
     public @PlayerActionControls()
     {
         asset = InputActionAsset.FromJson(@"{
@@ -221,24 +222,49 @@ public class @PlayerActionControls : IInputActionCollection, IDisposable
 
     // Player
     private readonly InputActionMap m_Player;
+
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Shoot;
+
     public struct PlayerActions
     {
         private @PlayerActionControls m_Wrapper;
-        public PlayerActions(@PlayerActionControls wrapper) { m_Wrapper = wrapper; }
+
+        public PlayerActions(@PlayerActionControls wrapper)
+        {
+            m_Wrapper = wrapper;
+        }
+
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
+
+        public InputActionMap Get()
+        {
+            return m_Wrapper.m_Player;
+        }
+
+        public void Enable()
+        {
+            Get().Enable();
+        }
+
+        public void Disable()
+        {
+            Get().Disable();
+        }
+
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+
+        public static implicit operator InputActionMap(PlayerActions set)
+        {
+            return set.Get();
+        }
+
         public void SetCallbacks(IPlayerActions instance)
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
@@ -274,12 +300,17 @@ public class @PlayerActionControls : IInputActionCollection, IDisposable
             }
         }
     }
+
     public PlayerActions @Player => new PlayerActions(this);
+
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
+
         void OnJump(InputAction.CallbackContext context);
+
         void OnPause(InputAction.CallbackContext context);
+
         void OnShoot(InputAction.CallbackContext context);
     }
 }

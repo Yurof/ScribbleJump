@@ -13,12 +13,14 @@ public class PauseMenu : MonoBehaviour
             PauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
             GameIsPaused = false;
+            AudioListener.volume = 1f;
         }
         else
         {
             PauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             GameIsPaused = true;
+            AudioListener.volume = 0f;
         }
     }
 

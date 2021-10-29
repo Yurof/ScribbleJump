@@ -8,13 +8,11 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI scoreGameOver;
     public float ScoreMultiplier = 10;
 
-    //public TextMeshProUGUI HallOfFame;
     private float scorevalue;
 
     public GameObject player;
     private float HallOfFamevalue;
 
-    // Start is called before the first frame update
     private void Start()
     {
         SetscoreText();
@@ -34,12 +32,10 @@ public class ScoreManager : MonoBehaviour
         {
             HallOfFamevalue = scorevalue;
             PlayerPrefs.SetFloat("HighScore", HallOfFamevalue);
-            Debug.Log("save highscore");
         }
         PlayerPrefs.SetFloat("Last", scorevalue);
     }
 
-    // Update is called once per frame
     private void Update()
     {
         SetscoreText();

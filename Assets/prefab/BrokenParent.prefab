@@ -209,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 5243204980078707228}
   crackingSound: {fileID: 353280848774673836}
+  clearRadius: 0.5
 --- !u!114 &7579931606563445498
 MonoBehaviour:
   m_ObjectHideFlags: 0

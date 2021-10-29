@@ -5,7 +5,7 @@ public class BluePlateformScript : MonoBehaviour
     public float blueSpeed = 2f;
     public float wallLimit = 2.2f;
     private bool direction = true;
-    
+
     private void Update()
     {
         if (transform.position.x >= wallLimit)

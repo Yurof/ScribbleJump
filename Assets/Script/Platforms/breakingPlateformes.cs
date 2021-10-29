@@ -4,6 +4,7 @@ public class breakingPlateformes : MonoBehaviour
 {
     public Animator animator;
     public AudioSource crackingSound;
+    public float clearRadius = 1f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,11 +19,23 @@ public class breakingPlateformes : MonoBehaviour
                 animator.SetTrigger("breakingDownTrigger");
             }
         }
-        else if (other.gameObject.CompareTag("Plateformes")){
-            Debug.Log("HAAA");
-            Destroy(transform.parent.gameObject);
-            Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, clearRadius);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.tag == "Plateformes")
+            {
+                Destroy(transform.parent.gameObject);
+                Destroy(gameObject);
+            }
         }
+    }
+
+    private void Update()
+    {
     }
 
     private void OnBecameInvisible()

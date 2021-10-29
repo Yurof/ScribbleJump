@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpringScript : MonoBehaviour
 {
     public Animator animator;
-    void OnCollisionEnter2D(Collision2D other)
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
         Vector2 direction = other.GetContact(0).normal;
         if (other.gameObject.CompareTag("Player"))
@@ -15,6 +14,5 @@ public class SpringScript : MonoBehaviour
                 animator.SetTrigger("trigger");
             }
         }
-
     }
 }

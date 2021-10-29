@@ -24,24 +24,21 @@ public class PlateformGenerator : MonoBehaviour
     public float blackHolePercent = 0f;
     public float noahPercent = 0.001f;
     public float RachelPercent = 0.5f;
+    public float maxNumberOfBrownP = 5;
 
     private float playerpastos;
-    private float randomGreen;
     private float highest;
     private float var1 = 5.5f;
 
-    //private Vector2 spawnpos;
-    // Start is called before the first frame update
     private void Start()
     {
         playerpastos = player.transform.position.y;
         Vector3 spawnpos = new Vector3();
         spawnpos.y += 1;
-        spawnpos = Generate2(spawnpos);
+        spawnpos = Generate(spawnpos, true);
         highest = spawnpos.y;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         Vector3 currentpos = player.transform.position;
@@ -52,52 +49,12 @@ public class PlateformGenerator : MonoBehaviour
             playerpastos = currentpos.y;
             spawnpos = player.transform.position;
             spawnpos.y += 5;
-            spawnpos = Generate2(spawnpos);
+            spawnpos = Generate(spawnpos, false);
             highest = spawnpos.y - player.transform.position.y;
         }
     }
 
-    private Vector3 Generate(Vector3 spawnpos)
-    {
-        for (int i = 0; i < 15; i++)
-        {
-            spawnpos.y += Random.Range(0.5f, 0.7f);
-            spawnpos.x = Random.Range(-2.2f, 2.2f);
-            float randomg = Random.Range(0.0f, 1.0f);
-
-            if (randomg < 0.001 && spawnpos.y > 10f)
-            {
-                Instantiate(blackHole, spawnpos, Quaternion.identity);
-            }
-            else if (0.02 <= randomg && randomg < 0.08)
-            {
-                Instantiate(bluePlateform, spawnpos, Quaternion.identity);
-            }
-            else if (0.08 <= randomg && randomg < 0.20)
-            {
-                Instantiate(brownPlateform, spawnpos, Quaternion.identity);
-            }
-            else
-            {
-                randomGreen = Random.Range(0.0f, 1.0f);
-                Instantiate(greenPlateform, spawnpos, Quaternion.identity);
-                if (springPercent > randomGreen)
-                {
-                    Debug.Log(randomGreen);
-                    Debug.Log(springPercent);
-                    Debug.Log("create monster");
-                    Instantiate(noahMonster, new Vector3(spawnpos.x, spawnpos.y + 0.65f, spawnpos.z), Quaternion.identity);
-                }
-                else
-                {
-                    if (springPercent + springPercent > randomGreen) Instantiate(spring, new Vector3(spawnpos.x, spawnpos.y + 0.2f, spawnpos.z), Quaternion.identity);
-                }
-            }
-        }
-        return spawnpos;
-    }
-
-    private Vector3 Generate2(Vector3 spawnpos)
+    private Vector3 Generate(Vector3 spawnpos, bool start)
     {
         Vector3 spawnpos2 = spawnpos;
         for (int i = 0; i < 20; i++)
@@ -107,7 +64,6 @@ public class PlateformGenerator : MonoBehaviour
 
             float randomPlateformType = Random.Range(0.0f, 1.0f);
             float randomMonsterOrObject = Random.Range(0.0f, 1.0f);
-            //float randomMonsterSpawn = Random.Range(0.0f, 1.0f);
 
             if (randomPlateformType < bluePlateformPercent)
             {
@@ -118,57 +74,45 @@ public class PlateformGenerator : MonoBehaviour
                 Instantiate(greenPlateform, spawnpos, Quaternion.identity);
                 spawnpos.y += 0.5f;
 
-                //Debug.Log(randomMonsterOrObject);
                 if (randomMonsterOrObject < hatPercent)
                 {
-                    Debug.Log("hat");
                     spawnpos.y -= 0.2f;
                     Instantiate(hat, spawnpos, Quaternion.identity);
                     spawnpos.y -= 0.3f;
                 }
                 else if (randomMonsterOrObject < hatPercent + jetpackPercent)
                 {
-                    Debug.Log("jetpack");
                     Instantiate(jetpack, spawnpos, Quaternion.identity);
                     spawnpos.y -= 0.5f;
                 }
                 else if (randomMonsterOrObject < hatPercent + jetpackPercent + springPercent)
                 {
-                    Debug.Log("spring");
                     spawnpos.y -= 0.4f;
                     Instantiate(spring, spawnpos, Quaternion.identity);
                     spawnpos.y -= 0.1f;
                 }
-                else if (randomMonsterOrObject < hatPercent + jetpackPercent + springPercent + noahPercent)
+                else if (randomMonsterOrObject < hatPercent + jetpackPercent + springPercent + noahPercent && !start)
                 {
-                    Debug.Log("noahMonster");
                     Instantiate(noahMonster, spawnpos, Quaternion.identity);
                     spawnpos.y -= 0.5f;
                 }
-                else if (randomMonsterOrObject < hatPercent + jetpackPercent + springPercent + noahPercent + RachelPercent)
+                else if (randomMonsterOrObject < hatPercent + jetpackPercent + springPercent + noahPercent + RachelPercent && !start)
                 {
-                    Debug.Log("rachelMonster");
                     spawnpos.y += 0.3f;
                     Instantiate(rachelMonster, spawnpos, Quaternion.identity);
                     spawnpos.y -= 0.7f;
                 }
-                else if (randomMonsterOrObject > hatPercent + jetpackPercent + springPercent + noahPercent + RachelPercent)
-                {
-                    Debug.Log("plop");
-                }
             }
         }
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < maxNumberOfBrownP; i++)
         {
             spawnpos2.y += Random.Range(1f, 3f);
             spawnpos2.x = Random.Range(-2.2f, 2.2f);
 
             float randomPlateformType = Random.Range(0.0f, 1.0f);
-            float randomMonsterOrObject = Random.Range(0.0f, 1.0f);
-            //float randomMonsterSpawn = Random.Range(0.0f, 1.0f);
 
-            if (randomPlateformType < blackHolePercent)
+            if (randomPlateformType < blackHolePercent && !start)
             {
                 Instantiate(blackHole, spawnpos2, Quaternion.identity);
             }
@@ -180,13 +124,4 @@ public class PlateformGenerator : MonoBehaviour
 
         return spawnpos;
     }
-
-/*    private void OnBecameInvisible()
-    {
-        Destroy(greenPlateform);
-        Destroy(bluePlateform);
-        Destroy(brownPlateform);
-        Destroy(blackHole);
-        Destroy(noahMonster);
-    }*/
 }

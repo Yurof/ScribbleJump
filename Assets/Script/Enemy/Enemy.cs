@@ -1,6 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class Enemy : MonoBehaviour
         animator.SetTrigger("TakeDamage");
         health -= damage;
         if (health <= 0)
-        {            
+        {
             Destroy(gameObject);
         }
     }

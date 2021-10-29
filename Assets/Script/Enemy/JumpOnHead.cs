@@ -19,14 +19,12 @@ public class JumpOnHead : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("collision");
             jumpingSound.Play();
             rb = collision.gameObject.GetComponent<Rigidbody2D>();
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             deathBool = true;
             Enemy.GetComponent<Collider2D>().enabled = false;
         }
-        //Destroy(Enemy);
     }
 
     private void Update()
